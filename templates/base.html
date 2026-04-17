@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SmartBuy</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <style>
+        .glass {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-gray-900 to-black text-white">
+
+<!-- NAVBAR -->
+<nav class="flex justify-between items-center p-4 glass sticky top-0 z-50">
+
+    <h1 class="text-2xl font-bold text-blue-400">SmartBuy</h1>
+
+    <div class="flex items-center">
+
+        <a href="/" class="mx-3 hover:text-blue-400">Home</a>
+        <a href="/cart/" class="mx-3 hover:text-blue-400">Cart</a>
+        <a href="/orders/" class="mx-3 hover:text-blue-400">Orders</a>
+
+        {% if user.is_authenticated %}
+
+            <span class="mx-3 text-green-400 font-semibold">
+                👋 {{ user.username }}
+            </span>
+
+            <a href="/logout/" class="mx-3 hover:text-red-400">
+                Logout
+            </a>
+
+        {% else %}
+
+            <a href="/login/" class="mx-3 hover:text-blue-400">
+                Login
+            </a>
+
+            <a href="/signup/" class="mx-3 hover:text-blue-400">
+                Signup
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</nav>
+
+<div class="p-6">
+{% block content %}
+{% endblock %}
+</div>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init();
+</script>
+
+</body>
+</html>

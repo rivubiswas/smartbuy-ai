@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="text-center py-20">
+    <h2 class="text-5xl font-bold">Shop Smarter 🚀</h2>
+    <p class="mt-4 text-gray-300">AI Powered E-Commerce</p>
+</section>
+
+<!-- SEARCH -->
+<div class="mb-6">
+    <input type="text" id="searchInput" placeholder="Search..."
+        class="p-2 rounded text-black w-full">
+</div>
+
+<!-- PRODUCTS -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+{% for product in products %}
+
+<div class="product glass p-4 rounded-xl hover:scale-105 transition"
+     data-name="{{ product.name }}"
+     data-category="{{ product.category }}">
+
+    <img src="{{ product.image.url }}" class="h-40 w-full object-cover rounded">
+
+    <h3 class="mt-2">{{ product.name }}</h3>
+    <p class="text-blue-400">₹{{ product.price }}</p>
+
+    <a href="/product/{{product.id}}/">
+        <button class="mt-2 w-full bg-blue-500 py-2 rounded">
+            View
+        </button>
+    </a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<script>
+document.getElementById("searchInput").addEventListener("keyup", function(){
+    let value = this.value.toLowerCase();
+    let products = document.querySelectorAll(".product");
+
+    products.forEach(p => {
+        let name = p.getAttribute("data-name").toLowerCase();
+        p.style.display = name.includes(value) ? "block" : "none";
+    });
+});
+</script>
+
+{% endblock %}
