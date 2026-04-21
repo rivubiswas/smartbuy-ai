@@ -2,7 +2,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from products.models import Product
 from .models import Cart, CartItem
 from recommendations.models import UserActivity
+from django.contrib.auth.decorators import login_required
 
+
+@login_required
+def cart_view(request):
+    user = request.user
+    cart_items = Cart.objects.filter(user=user)
+    return render(request, 'cart/cart.html', {'cart_items': cart_items})
 
 def add_to_cart(request, product_id):
 
