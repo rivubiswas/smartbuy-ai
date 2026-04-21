@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-18b1h+&_91r-h!8ib4@ux=o7nudu+i087*rfig-96^w95(-+6h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['smartbuy-ai-3.onrender.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
